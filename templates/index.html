@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Summarizer</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    body {
+        background: black;
+        color: white;
+    }
+</style>
+<body>
+    <h1 class="text-center mt-4">Hindi Summarizer</h1>
+    <div class="container mt-5" style="padding: 50px; width: 50%; border: 5px red dashed; border-radius: 15px;">
+        <h5 class="text-center mb-4" id="model-title">Using IndicBART</h5>
+        <form action="/summarize" method="post">
+            <div class="form-group">
+                <label for="model_selected">Select Model</label>
+                <select class="form-control" id="model_selected" name="model_selected" onchange="updateModelTitle()">
+                    <option value="IndicBART">IndicBART</option>
+                    <option value="mT5">mT5</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="text">Enter Text</label>
+                <textarea name="text" id="text" class="form-control" cols="125" rows="4"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-danger" style="width: 100%;">Summarize</button>
+        </form>
+
+        {% if summarized %}
+        <h3>Original Text</h3>
+        <p>{{ input_text }}</p>
+
+        <h2>Generated Summary</h2>
+        <p>{{ summarized }}</p>
+        {% endif %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function updateModelTitle() {
+            const selectedModel = document.getElementById('model_selected').value;
+            const modelTitle = document.getElementById('model-title');
+            modelTitle.textContent = `Using ${selectedModel}`;
+        }
+    </script>
+</body>
+</html>
