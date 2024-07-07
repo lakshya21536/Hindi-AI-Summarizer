@@ -1,5 +1,3 @@
-from dotenv import load_dotenv
-import os
 from flask import Flask, render_template, request
 import requests
 import time
@@ -11,7 +9,7 @@ API_URLS = {
     "mT5": "https://api-inference.huggingface.co/models/lakshya188/mt5_finetuned",
     "IndicBART": "https://api-inference.huggingface.co/models/lakshya188/indicBART_finetuned"
 }
-HEADERS = {"Authorization": f"Bearer {os.getenv('HUGGINGFACE_TOKEN')}"}
+HEADERS = {"Authorization": "Bearer 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"}  # Replace with your actual Hugging Face API token
 
 def query_huggingface_api(model_name, payload):
     retries = 5
